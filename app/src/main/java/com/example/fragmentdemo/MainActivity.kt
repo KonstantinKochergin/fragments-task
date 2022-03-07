@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         toCurrentTask.setOnClickListener {
             val ft = fm.beginTransaction()
-            ft.replaces(R.id.container_fragm, fr1)
+            ft.replace(R.id.container_fragm, fr1)
             ft.commit() }
         }
 
