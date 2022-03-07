@@ -13,7 +13,7 @@ class FinishTaskFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_current_task, container, false)
+        val view = inflater.inflate(R.layout.fragment_finish_task, container, false)
         view.setBackgroundColor(Color.YELLOW)
         return view
         //return super.onCreateView(inflater, container, savedInstanceState)

@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         fm = supportFragmentManager
         ft = fm.beginTransaction()
+        fr2 = FinishTaskFragment()
 
         val fr = fm.findFragmentById(R.id.container_fragm)
         if (fr == null) {
@@ -34,11 +35,15 @@ class MainActivity : AppCompatActivity() {
         toFinishTask = findViewById(R.id.finishTask)
 
         toFinishTask.setOnClickListener {
-            if (fr2 == null) {
-                fr2 = FinishTaskFragment()
-            }
+
             val ft = fm.beginTransaction()
             ft.replace(R.id.container_fragm, fr2)
             ft.commit() }
-    }
+
+        toCurrentTask.setOnClickListener {
+            val ft = fm.beginTransaction()
+            ft.replaces(R.id.container_fragm, fr1)
+            ft.commit() }
+        }
+
 }
