@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.fragmentdemo.dto.CityWeather
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,37 +14,47 @@ class MainActivity : AppCompatActivity() {
     lateinit var ft: FragmentTransaction
     lateinit var fr1: Fragment
     lateinit var fr2: Fragment
-    lateinit var toFinishTask: Button
-    lateinit var toCurrentTask: Button
+    lateinit var toShortInfoFr: Button
+    lateinit var toDetailedInfoFr: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fm = supportFragmentManager
         ft = fm.beginTransaction()
-        fr2 = FinishTaskFragment()
+        fr2 = ShortInfoFragment()
 
         val fr = fm.findFragmentById(R.id.container_fragm)
         if (fr == null) {
-            fr1 = CurrentTaskFragment()
-            fm.beginTransaction().add(R.id.container_fragm, fr1)
+            fr1 = DetailedInfoFragment()
+            fm.beginTransaction().add(R.id.container_fragm, fr2)
                 .commit()
         } else
             fr1 = fr
 
-        toCurrentTask = findViewById(R.id.currentTask)
-        toFinishTask = findViewById(R.id.finishTask)
+        toShortInfoFr = findViewById(R.id.short_info)
+        toDetailedInfoFr = findViewById(R.id.detailed_info)
 
-        toFinishTask.setOnClickListener {
+        toShortInfoFr.setOnClickListener {
 
             val ft = fm.beginTransaction()
             ft.replace(R.id.container_fragm, fr2)
-            ft.commit() }
-
-        toCurrentTask.setOnClickListener {
-            val ft = fm.beginTransaction()
-            ft.replace(R.id.container_fragm, fr1)
-            ft.commit() }
+            ft.commit()
         }
 
+        toDetailedInfoFr.setOnClickListener {
+            val ft = fm.beginTransaction()
+            ft.replace(R.id.container_fragm, fr1)
+            ft.commit()
+        }
+    }
+
+    companion object {
+        val CITIES = arrayOf<CityWeather>(
+            CityWeather("Иркутск", 8f, 707.5f, 100),
+            CityWeather("Москва", 20f, 750f, 77),
+            CityWeather("Красноярск", 13f, 746f, 56),
+            CityWeather("Владивосток", 11f, 756.4f, 94),
+        )
+    }
 }

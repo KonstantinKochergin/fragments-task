@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/short_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Краткая свобдка по городам"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/detailed_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Подробная информация"
+        app:layout_constraintTop_toBottomOf="@id/short_info"
+        app:layout_constraintLeft_toLeftOf="@id/short_info"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <!--Контейнер под фрагменты -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/container_fragm">
+        android:layout_height="0dp"
+        android:id="@+id/container_fragm"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailed_info"
+        app:layout_constraintBottom_toBottomOf="parent">
 
     </FrameLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Текущие задачи"
-        android:id="@+id/currentTask"
-        android:layout_below="@id/container_fragm"
-        android:layout_margin="10dp"
-        android:layout_alignParentBottom="true"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Завершенные задачи"
-        android:id="@+id/finishTask"
-        android:layout_below="@id/container_fragm"
-        android:layout_toEndOf="@id/currentTask"
-        android:layout_alignParentBottom="true"/>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
